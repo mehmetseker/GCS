@@ -24,8 +24,8 @@ npm run test
 http://localhost:3000/api/swagger/
 ```
 
-- AWS
+- Heroku
 
 ```bash
-http://localhost:3000/api/swagger/
+https://mehmetsekergetir.herokuapp.com/api/swagger/
 ```
