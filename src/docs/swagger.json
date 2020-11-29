@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "GETIR",
+    "description": "Simple api for \"Getir Case Study\"",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Records",
+      "description": "API for Records"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/records": {
+      "post": {
+        "tags": ["Records"],
+        "summary": "Filter records with required parameters",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "Record Filter Parameters",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Record"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RecordSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "ERROR",
+            "schema": {
+              "$ref": "#/definitions/RecordErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Record": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "example": "2015-01-01"
+        },
+        "endDate": {
+          "type": "string",
+          "example": "2016-01-01"
+        },
+        "minCount": {
+          "type": "integer",
+          "example": 2000
+        },
+        "maxCount": {
+          "type": "string",
+          "example": 3000
+        }
+      }
+    },
+    "RecordSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "example": "GjhjVIKb"
+            },
+            "createdAt": {
+              "type": "string",
+              "example": "2015-10-14T08:43:13.661Z"
+            },
+            "totalCount": {
+              "type": "integer",
+              "example": 2000
+            }
+          }
+        }
+      }
+    },
+    "RecordErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": false
+        },
+        "error": {
+          "type": "string",
+          "example": "Error"
+        },
+        "message": {
+          "type": "string",
+          "example": "Start Date is required"
+        }
+      }
+    }
+  }
+}
